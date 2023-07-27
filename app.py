@@ -10,11 +10,15 @@ import streamlit as st
 
 # In[9]:
 
-
-cricket_data=pd.read_excel('C:\\Users\\abhij\\Desktop\\SANJAY\\Cricket\\2.World_Cup50\\2\\data.xlsx')
+cricket_data=pd.DataFrame()
+for i in range(1,1144):
+    url='https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;filter=advanced;orderby=matches;page='+str(i)+';series=12357;series=2403;series=4857;series=534;series=547;series=573;series=617;series=6537;series=665;series=722;series=787;series=865;size=200;template=results;type=allround'
+    d=pd.read_html(url)
+    cricket_data=pd.concat([df,d[2]])
+    
 print(cricket_data.shape)
 cricket_data.head()
-
+cricket_data.drop(columns=['Unnamed: 14',0],inplace=True)
 
 # In[20]:
 
